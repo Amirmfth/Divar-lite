@@ -1,8 +1,8 @@
 // hooks
 import { useState } from "react";
 // components
-import CheckOtpForm from "../components/templates/CheckOtpForm";
-import SendOtpForm from "../components/templates/SendOtpForm";
+import CheckOtpForm from "components/templates/CheckOtpForm";
+import SendOtpForm from "components/templates/SendOtpForm";
 
 function AuthPage() {
   // states
