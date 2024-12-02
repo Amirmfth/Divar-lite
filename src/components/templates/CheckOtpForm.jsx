@@ -5,6 +5,8 @@ import { checkOtp } from "services/auth";
 import { getProfile } from "services/user";
 // utils
 import { setCookie } from "utils/cookie";
+// css
+import styles from "./CheckOtpForm.module.css"
 
 function CheckOtpForm({ code, setCode, mobile, setStep }) {
   const navigate = useNavigate();
@@ -22,7 +24,7 @@ function CheckOtpForm({ code, setCode, mobile, setStep }) {
     if (error) console.log(error.response.data.message);
   };
   return (
-    <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler} className={styles.form}>
       <p>تایید کد اس ام اس شده</p>
       <span>کد پیامک شده به شماره "{mobile}" را وارد کنید</span>
       <label htmlFor="input">کد تایید را وارد کنید</label>
@@ -34,7 +36,7 @@ function CheckOtpForm({ code, setCode, mobile, setStep }) {
         onChange={(e) => setCode(e.target.value)}
       />
       <button type="submit">ورود</button>
-      <button onClick={() => setStep(1)}>تغییر شماره موبایل</button>
+      <button className={styles.backButton} onClick={() => setStep(1)}>تغییر شماره موبایل</button>
     </form>
   );
 }

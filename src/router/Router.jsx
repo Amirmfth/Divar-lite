@@ -6,13 +6,16 @@ import DashboardPage from "pages/DashboardPage";
 import AuthPage from "pages/AuthPage";
 import AdminPage from "pages/AdminPage";
 import PageNotFound from "pages/PageNotFound";
+//  components
+import Loader from "src/components/modules/Loader";
+// services
 import { getProfile } from "services/user";
 
 function Router() {
   const { data, isLoading, error } = useQuery(["profile"], getProfile);
   console.log({ data, isLoading, error });
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <Loader />;
 
   return (
     <Routes>
@@ -25,7 +28,16 @@ function Router() {
         path="/auth"
         element={data ? <Navigate to={"/dashboard"} /> : <AuthPage />}
       />
-      <Route path="/admin" element={data && data.data.role === "ADMIN" ? <AdminPage /> : <Navigate to={"/"} />} />
+      <Route
+        path="/admin"
+        element={
+          data && data.data.role === "ADMIN" ? (
+            <AdminPage />
+          ) : (
+            <Navigate to={"/"} />
+          )
+        }
+      />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
