@@ -2,7 +2,7 @@
 // services
 import { checkOtp } from "services/auth";
 // utils
-import {setCookies} from "utils/cookie";
+import {setCookie} from "utils/cookie";
 
 function CheckOtpForm({ code, setCode, mobile, setStep }) {
   // handlers
@@ -11,7 +11,7 @@ function CheckOtpForm({ code, setCode, mobile, setStep }) {
     if (code.length !== 5) return;
     const { response, error } = await checkOtp(mobile, code);
     if (response) {
-        setCookies(response.data)
+        setCookie(response.data)
     }
     if (error) console.log(error.response.data.message);
   };
